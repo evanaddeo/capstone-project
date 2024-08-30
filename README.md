@@ -2,6 +2,7 @@
 Evan &amp; Darius -- ADP Training Full-stack capstone
 
 > FRONTEND : Run with 'npm install' + 'npm run dev' in /frontend directory
+
 > BACKEND : Run with ...
 
 
