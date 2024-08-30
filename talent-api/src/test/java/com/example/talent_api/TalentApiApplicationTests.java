@@ -1,10 +1,10 @@
-package adp.capstone;
+package com.example.talent_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CapstoneApplicationTests {
+class TalentApiApplicationTests {
 
 	@Test
 	void contextLoads() {
