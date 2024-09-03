@@ -1,6 +1,6 @@
 package com.example.talent_api;
 
-import com.example.talent_api.ManagerRepository;
+import com.example.talent_api.ApplicationRepository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/managers")
-public class ManagerController {
-
+@RequestMapping("/applications")
+public class ApplicationController {
+    
     @Autowired
-    private ManagerRepository managerRepository;
+    private ApplicationRepository applicationRepository;
 
     @GetMapping
-    public List<Manager> getManagers() {
-        return managerRepository.findAll();
+    public List<Application> getApplications() {
+        return applicationRepository.findAll();
     }
 }

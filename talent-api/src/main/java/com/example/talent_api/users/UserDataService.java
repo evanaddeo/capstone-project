@@ -42,7 +42,6 @@ public class UserDataService {
             user.setPassword(first + "pass");
             user.setType(userType);
 
-            System.out.println(user);
             userRepository.save(user);
         }
     }

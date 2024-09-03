@@ -1,17 +1,25 @@
-package com.example.talent_api.applications;
+package com.example.talent_api;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import java.util.Date;
+import java.sql.Time;
 
 @Entity
+@Table(name="application")
 public class Application {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
-   // @GeneratedValue(strategy=GenerationType.AUTO)
-    //private Time date_applied;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date_applied;
 
     private int job_id;
     private int user_id;
@@ -27,51 +35,52 @@ public class Application {
         this.id = id;
     }
 
-    // public Time getDateApplied() {
-    //     return this.date_applied;
-    // }
+    public Date getDate_applied() {
+        return this.date_applied;
+    }
 
-    // public void setDateApplied(Time date_applied) {
-    //     this.date_applied = date_applied;
-    // }
+    public void setDate_applied(Date date_applied) {
+        this.date_applied = date_applied;
+    }
 
-    private int getJobId() {
+    public int getJob_id() {
         return this.job_id;
     }
 
-    private void setJobId(int job_id) {
+    public void setJob_id(int job_id) {
         this.job_id = job_id;
     }
 
-    private int getUserId() {
+    public int getUser_id() {
         return this.user_id;
     }
 
-    private void setUserId(int user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
-    private String getCoverLetter() {
+    public String getCover_letter() {
         return this.cover_letter;
     }
 
-    private void setCoverLetter(String cover_letter) {
+    public void setCover_letter(String cover_letter) {
         this.cover_letter = cover_letter;
     }
 
-    private String getCustomResume() {
+    public String getCustom_resume() {
         return this.custom_resume;
     }
 
-    private void setCustomResume(String custom_resume) {
+    public void setCustom_resume(String custom_resume) {
         this.custom_resume = custom_resume;
     }
 
-    private String getApplicationStatus() {
+    public String getApplication_status() {
         return this.application_status;
     }
 
-    private void setApplicationStatus(String application_status) {
+    public void setApplication_status(String application_status) {
         this.application_status = application_status;
     }
+
 }
