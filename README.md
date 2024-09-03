@@ -2,7 +2,12 @@
 Evan &amp; Darius -- ADP Training Full-stack capstone
 
 > FRONTEND : Run with 'npm install' + 'npm run dev' in /frontend directory
-> BACKEND : Run with ...
+> - Port 5173
+
+> BACKEND : Run with './gradlew' + './gradle bootRun' in /talent-api directory.
+> - Port 8080
+
+> DATABASE : Login dbuser with 'mysql -u dbuser -p'
 
 
 ### Technologies

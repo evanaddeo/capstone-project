@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import LoginSignup from './pages/LoginSignup';
-import './App.css'; // Ensure this CSS file exists
+import './App.css'; 
 
 function App() {
+
   return (
     <Router>
       <div className="app-container">
@@ -18,4 +19,3 @@ function App() {
 }
 
 export default App;
-
