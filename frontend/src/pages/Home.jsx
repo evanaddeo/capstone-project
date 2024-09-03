@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css'; // Ensure this CSS file exists
-
 import { getAllUsers } from '../crud.js';
 
 function Home() {
