@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css'; // Ensure this CSS file exists
+import '../styles/Home.css'; // Ensure this CSS file exists
 
 function Home() {
 

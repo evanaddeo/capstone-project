@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LoginSignup.css'; // Ensure this CSS file exists
+import '../styles/LoginSignup.css'; // Ensure this CSS file exists
 
 function LoginSignup() {
   const [showLogin, setShowLogin] = useState(true);
