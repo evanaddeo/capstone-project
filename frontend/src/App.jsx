@@ -16,6 +16,10 @@ function App() {
       <div className="app-container">
         <Routes>
           <Route path="/" element={<AdminDash />} />
+          <Route path="/LoginSignup" element={<LoginSignup />} />
+          <Route path="/ManagerDash" element={<ManagerDash />} />
+          <Route path="/CandidateDash" element={<CandidateDash />} />
+          <Route path="/JobSearch" element={<JobSearch />} />
         </Routes>
       </div>
     </Router>

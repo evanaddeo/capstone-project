@@ -1,25 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css'; // Ensure this CSS file exists
+import { getAllUsers } from '../crud.js';
 
 function Home() {
 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/users')
-      .then((res) => {
-        if(!res.ok) {
-          throw new Error("failed to fetch");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setUsers(data);
-      })
-      .catch((error) => {
-        console.log("Error fetching users");
-      })
+      getAllUsers()
+      .then(users => setUsers(users))
   }, []);
 
   return (
@@ -43,7 +33,7 @@ function Home() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users?.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.type}</td>

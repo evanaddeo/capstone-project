@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 import '../styles/LoginSignup.css'; // Ensure this CSS file exists
 
 function LoginSignup() {
@@ -7,43 +9,9 @@ function LoginSignup() {
   return (
     <div className="login-signup-container">
       {showLogin ? (
-        <div className="login-form">
-          <h2>Login</h2>
-          <form>
-            <label>
-              Email:
-              <input type="email" name="email" />
-            </label>
-            <label>
-              Password:
-              <input type="password" name="password" />
-            </label>
-            <button type="submit">Login</button>
-          </form>
-          <p>
-            Don't have an account?{' '}
-            <button onClick={() => setShowLogin(false)}>Register</button>
-          </p>
-        </div>
+        <LoginForm setShowLogin={setShowLogin}/>
       ) : (
-        <div className="signup-form">
-          <h2>Register</h2>
-          <form>
-            <label>
-              Email:
-              <input type="email" name="email" />
-            </label>
-            <label>
-              Password:
-              <input type="password" name="password" />
-            </label>
-            <button type="submit">Register</button>
-          </form>
-          <p>
-            Already have an account?{' '}
-            <button onClick={() => setShowLogin(true)}>Login</button>
-          </p>
-        </div>
+        <SignupForm setShowLogin={setShowLogin}/>
       )}
     </div>
   );

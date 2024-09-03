@@ -1,5 +1,8 @@
-package com.example.talent_api.applications;
+package com.example.talent_api;
 
-public class ApplicationRepository {
+import com.example.talent_api.Application;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+
+public interface ApplicationRepository extends JpaRepository<Application, Long> {
 }
