@@ -2,21 +2,26 @@ package com.example.talent_api;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
+@Table(name="user")
 public class User {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private String type;
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,5 +47,12 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String toString() {
+        return this.id + ". " + 
+               this.username + " : " + 
+               this.password + " (" +
+               this.type + ")";
     }
 }
