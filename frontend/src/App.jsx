@@ -1,21 +1,21 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import LoginSignup from './pages/LoginSignup';
+import './App.css'; // Ensure this CSS file exists
 
 function App() {
   return (
-    <>
-      <h1>Trail-Blazers</h1>
-      <div className="card">
-        <p>
-          This is the hiring site for Trail-Blazers
-        </p>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login-signup" element={<LoginSignup />} />
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Copyright 2030 Trail-Blazers
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
 
