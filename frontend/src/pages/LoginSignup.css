@@ -1,0 +1,48 @@
+.login-signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.login-form, .signup-form {
+  max-width: 400px;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
