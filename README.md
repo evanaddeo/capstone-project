@@ -7,10 +7,10 @@ Evan &amp; Darius -- ADP Training Full-stack capstone
 > BACKEND : Run with './gradlew' + './gradle bootRun' in /talent-api directory.
 > - Port 8080
 
-> DATABASE : Login dbuser with 'mysql -u dbuser -p'
+> DATABASE : Connect dbuser with 'mysql -u dbuser -p', password is 'passpass'
 
 
 ### Technologies
 - React Vite app for Frontend
 - Java/Spring backend
-- Data stored in MySQL
+- Data stored in MySQL DB
