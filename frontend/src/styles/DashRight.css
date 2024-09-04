@@ -1,0 +1,54 @@
+/* CandidateDashRight.css */
+
+.dashboard-container-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align all items to the right */
+  width: 45%; /* Adjust width as needed */
+}
+
+.dashboard-header-right {
+  width: 100%; /* Ensure the header takes up full width */
+  text-align: right; /* Align text to the right */
+  margin-bottom: 20px; /* Add some space below the header */
+}
+
+.dashboard-info-right {
+  display: flex;
+  justify-content: flex-end; /* Align the content of the info section to the right */
+  width: 100%; /* Ensure the info section takes up full width */
+  margin-bottom: 20px; /* Add some space below the info section */
+}
+
+.info-card-right {
+  padding: 10px;
+  background-color: #f4f4f4; /* Optional: background color */
+  border: 1px solid #ccc; /* Optional: border */
+  width: 300px; /* Fixed width for consistent alignment */
+}
+
+.dashboard-links-right {
+  width: 100%; /* Ensure the links section takes up full width */
+  text-align: right; /* Align text to the right */
+}
+
+.dashboard-links-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-links-right li {
+  margin-bottom: 10px; /* Space between the list items */
+}
+
+.link-button-right {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.link-button-right:hover {
+  background-color: #0056b3;
+}
