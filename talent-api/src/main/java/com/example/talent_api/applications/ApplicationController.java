@@ -28,6 +28,13 @@ public class ApplicationController {
         return foundApplication.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/byJob/{jobId}")
+    public ResponseEntity<List<Application>> getApplicationByJobId(@PathVariable Long jobId) {
+        List<Application> applications = applicationRepository.findByJobId(jobId);
+
+        return ResponseEntity.ok(applications);
+    }
+
     @PostMapping
     public ResponseEntity<Application> createApplication(@RequestBody Application application) {
         Application savedApplication = applicationRepository.save(application);
