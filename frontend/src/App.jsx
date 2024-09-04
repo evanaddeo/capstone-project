@@ -6,6 +6,7 @@ import AdminDash from './pages/AdminDash';
 import ManagerDash from './pages/ManagerDash';
 import CandidateDash from './pages/CandidateDash'
 import JobSearch from './pages/JobSearch';
+import JobList from './components/JobList';
 import UpdateApp from './components/UpdateApp';
 import './styles/App.css'; 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/ManagerDash" element={<ManagerDash />} />
           <Route path="/CandidateDash" element={<CandidateDash />} />
           <Route path="/JobSearch" element={<JobSearch />} />
+          <Route path="/JobList" element={<JobList />} />
         </Routes>
       </div>
     </Router>
