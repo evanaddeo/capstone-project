@@ -16,7 +16,7 @@ const UpdateUserForm = ({ initialInfo, onSave }) => {
   };
 
   const handleCancelClick = () => {
-    setFormState(initialInfo);
+    onSave(initialInfo);
   };
 
   return (
@@ -48,8 +48,8 @@ const UpdateUserForm = ({ initialInfo, onSave }) => {
           onChange={handleInputChange}
         />
       </div>
-      <button type="button" onClick={handleSaveClick}>Save</button>
-      <button type="button" onClick={handleCancelClick}>Cancel</button>
+      <button type="button" onClick={handleSaveClick} className="save-button">Save</button>
+      <button type="button" onClick={handleCancelClick} className="cancel-button">Cancel</button>
     </form>
   );
 };

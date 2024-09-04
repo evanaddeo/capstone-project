@@ -1,65 +1,31 @@
-.job-search-container {
-    display: flex;
+/* JobSearch.css */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .job-search-container {
+    margin-top: 60px; /* Adjust based on header height */
+    margin-bottom: 50px; /* Adjust based on footer height */
     padding: 20px;
-}
-
-.filters {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.filters form {
+    box-sizing: border-box;
+  }
+  
+  .filters {
     margin-bottom: 20px;
-}
-
-.filters input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 100%;
-}
-
-.filters button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.filters label {
-    display: block;
-    margin-top: 20px;
-}
-
-.filters select {
-    padding: 10px;
-    font-size: 16px;
-}
-
-.job-listings {
-    flex: 2;
-    border-left: 1px solid #ddd;
-    padding-left: 20px;
-}
-
-.job-listings ul {
+  }
+  
+  .job-listings {
     list-style: none;
     padding: 0;
-}
-
-.job-listing {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-.job-listing h2 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.job-listing p {
-    margin: 5px 0;
-}
-
-.job-listing a {
-    color: blue;
-    text-decoration: underline;
-}
+  }
+  
+  .job-listing {
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    color: red;
+  }
+  

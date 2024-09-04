@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
 import '../styles/JobSearch.css';
 
 // Function to simulate fetching job listings
@@ -45,50 +47,54 @@ const JobSearch = () => {
     };
 
     return (
-        <div className="job-search-container">
-            <div className="filters">
-                <h1>Job Search</h1>
-                <form onSubmit={handleSearchSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Search for jobs..."
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                    <button type="submit">Search</button>
-                </form>
-                <label>
-                    Job Type:
-                    <select value={jobType} onChange={handleJobTypeChange}>
-                        <option value="All">All</option>
-                        <option value="Full-time">Full-time</option>
-                        <option value="Part-time">Part-time</option>
-                        <option value="Contract">Contract</option>
-                        <option value="Internship">Internship</option>
-                    </select>
-                </label>
-            </div>
+        <>
+            <Header />
+            <div className="job-search-container">
+                <div className="filters">
+                    <h1>Job Search</h1>
+                    <form onSubmit={handleSearchSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Search for jobs..."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <button type="submit">Search</button>
+                    </form>
+                    <label>
+                        Job Type:
+                        <select value={jobType} onChange={handleJobTypeChange}>
+                            <option value="All">All</option>
+                            <option value="Full-time">Full-time</option>
+                            <option value="Part-time">Part-time</option>
+                            <option value="Contract">Contract</option>
+                            <option value="Internship">Internship</option>
+                        </select>
+                    </label>
+                </div>
 
-            <div className="job-listings">
-                {loading && <p>Loading...</p>}
-                {error && <p className="error">{error}</p>}
+                <div className="job-listings">
+                    {loading && <p>Loading...</p>}
+                    {error && <p className="error">{error}</p>}
 
-                <ul>
-                    {jobListings.length ? (
-                        jobListings.map(job => (
-                            <li key={job.id} className="job-listing">
-                                <h2>{job.title}</h2>
-                                <p>{job.company}</p>
-                                <p>{job.location}</p>
-                                <a href={`/jobs/${job.id}`}>View Details</a>
-                            </li>
-                        ))
-                    ) : (
-                        !loading && <p>No job listings found.</p>
-                    )}
-                </ul>
+                    <ul>
+                        {jobListings.length ? (
+                            jobListings.map(job => (
+                                <li key={job.id} className="job-listing">
+                                    <h2>{job.title}</h2>
+                                    <p>{job.company}</p>
+                                    <p>{job.location}</p>
+                                    <a href={`/jobs/${job.id}`}>View Details</a>
+                                </li>
+                            ))
+                        ) : (
+                            !loading && <p>No job listings found.</p>
+                        )}
+                    </ul>
+                </div>
             </div>
-        </div>
+            <Footer /> 
+        </>
     );
 };
 
