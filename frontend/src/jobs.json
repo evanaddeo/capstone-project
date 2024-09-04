@@ -1,0 +1,15 @@
+[
+    {
+      "id": 1,
+      "title": "Software Engineer",
+      "description": "Develop and maintain software applications.",
+      "managerName": "Alice Johnson"
+    },
+    {
+      "id": 2,
+      "title": "Product Manager",
+      "description": "Lead the development of new products.",
+      "managerName": "Bob Smith"
+    }
+  ]
+  

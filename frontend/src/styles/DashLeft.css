@@ -1,0 +1,62 @@
+/* CandidateDashLeft.css */
+
+.dashboard-wrapper {
+  display: flex;
+  justify-content: space-between; /* Align containers on both sides */
+  padding: 0 20px; /* Add some padding to the wrapper */
+}
+
+.dashboard-container-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align all items to the left */
+  width: 45%; /* Adjust width as needed */
+}
+
+.dashboard-header-left {
+  width: 100%; /* Ensure the header takes up full width */
+  text-align: left; /* Align text to the left */
+  margin-bottom: 20px; /* Add some space below the header */
+}
+
+.dashboard-info-left {
+  display: flex;
+  justify-content: flex-start; /* Align the content of the info section to the left */
+  width: 100%; /* Ensure the info section takes up full width */
+  margin-bottom: 20px; /* Add some space below the info section */
+}
+
+.info-card-left {
+  padding: 10px;
+  background-color: #f4f4f4; /* Optional: background color */
+  border: 1px solid #ccc; /* Optional: border */
+  width: 300px; /* Fixed width for consistent alignment */
+}
+
+.dashboard-links-left {
+  width: 100%; /* Ensure the links section takes up full width */
+  text-align: left; /* Align text to the left */
+}
+
+.dashboard-links-left ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-links-left li {
+  margin-bottom: 10px; /* Space between the list items */
+}
+
+.link-button-left {
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.link-button-left:hover {
+  background-color: #0056b3;
+}
+
+  
