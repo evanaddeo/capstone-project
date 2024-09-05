@@ -30,14 +30,16 @@ const CandidateList = () => {
             <th>Username</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Address</th>
+            
           </tr>
         </thead>
         <tbody>
           {candidates.length ? (
             candidates.map(candidate => (
               <tr key={candidate.id}>
-                <td>{candidate.id}</td>
-                <td>{candidate.username}</td>
+                <td>{candidate.user_id}</td>
+                <td>{candidate.full_name}</td>
                 <td>{candidate.email}</td>
                 <td>{candidate.phone}</td>
               </tr>
