@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/ApplicationList.css';
+import { getCookie } from '../utils/auth';
+import { getJobById } from '../crud.js'; 
 
 const ApplicationList = ({ jobId, managerId }) => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  
+  // Function to fetch applications and associated job data
+  const fetchApplications = async () => {
+    setLoading(true);
+    try {
+      const userId = getCookie('user_id');
+      if (!userId) {
+        throw new Error('User ID not found in cookie.');
+      }
+
+      const response = await fetch(`http://localhost:8080/applications`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch applications.');
+      }
+      const data = await response.json();
+
+      // Fetch job details for each application
+      const applicationsWithJobs = await Promise.all(
+        data.map(async (application) => {
+          try {
+            const job = await getJobById(application.job_id);
+            return { ...application, job }; // Combine application and job data
+          } catch (jobError) {
+            console.error('Failed to fetch job details:', jobError);
+            return { ...application, job: { department: 'Unknown', listing_title: 'Unknown' } }; // Handle job fetch error
+          }
+        })
+      );
+
+      setApplications(applicationsWithJobs);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Import getCookie from ../utils/auth
-    //
-    // save getCookie("user_id") in a const
-    //
-    // make a fetch for http://localhost:8080/byUser/{userId}
-    //
-    // display the returned applications, displaymsg if there are none
-
-    const fetchApplications = async () => {
-      setLoading(true);
-      try {
-        // Replace this URL with your API endpoint for fetching applications
-        const response = await fetch(`/api/applications?jobId=${jobId}&managerId=${managerId}`);
-        const data = await response.json();
-        setApplications(data);
-      } catch (err) {
-        setError('Failed to fetch applications.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchApplications();
   }, [jobId, managerId]);
 
@@ -39,12 +53,12 @@ const ApplicationList = ({ jobId, managerId }) => {
 
   return (
     <div className="application-list">
-      <h2>Applications for Job ID: {jobId}</h2>
+      <h2>Applications</h2>
       <table>
         <thead>
           <tr>
-            <th>Application ID</th>
-            <th>Candidate Name</th>
+            <th>Company (Department)</th>
+            <th>Role (Listing Title)</th>
             <th>Resume</th>
             <th>Cover Letter</th>
             <th>Status</th>
@@ -54,11 +68,19 @@ const ApplicationList = ({ jobId, managerId }) => {
           {applications.length > 0 ? (
             applications.map((application) => (
               <tr key={application.id}>
-                <td>{application.id}</td>
-                <td>{application.candidateName}</td>
-                <td><a href={application.resumeUrl} target="_blank" rel="noopener noreferrer">View Resume</a></td>
-                <td><a href={application.coverLetterUrl} target="_blank" rel="noopener noreferrer">View Cover Letter</a></td>
-                <td>{application.status}</td>
+                <td>{application.job?.department}</td> {/* Display Department */}
+                <td>{application.job?.listing_title}</td> {/* Display Listing Title */}
+                <td>
+                  <a href={application.custom_resume} target="_blank" rel="noopener noreferrer">
+                    View Resume
+                  </a>
+                </td>
+                <td>
+                  <a href={application.cover_letter} target="_blank" rel="noopener noreferrer">
+                    View Cover Letter
+                  </a>
+                </td>
+                <td style={{color: (application.application_status === 'Rejected' ? "red" : "green")}}>{application.application_status}</td>
               </tr>
             ))
           ) : (
