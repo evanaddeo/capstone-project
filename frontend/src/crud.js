@@ -13,6 +13,25 @@ export async function getAllUsers() {
     })
 }
 
+export async function getLoggedInUser(username, password) {
+    try {
+        const response = await fetch('http://localhost:8080/users');
+        if (!response.ok) {
+            throw new Error('Failed to fetch users');
+        }
+
+        const users = await response.json();
+
+        const user = users.find(u => u.username === username && u.password === password);
+        if (user === undefined) return null;
+
+        return user;
+    } catch (error) {
+        console.error("error fetching", error);
+        return null;
+    }
+}
+
 export async function getUserById(id) {
     return fetch(`http://localhost:8080/users/${id}`)
     .then( (res) => {
@@ -69,8 +88,32 @@ export async function postApplication(application) {
     })
 }
 
-export async function getCandidateById(id) {
+export async function getCandidateByUserId(userId) {
+    return fetch(`http://localhost:8080/candidates/byUser/${userId}`)
+    .then((res) => {
+        if(!res.ok) {
+            throw new Error("failed to fetch");
+        }
 
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching all applications", error);
+    })
+}
+
+export async function getManagerByUserId(userId) {
+    return fetch(`http://localhost:8080/managers/byUser/${userId}`)
+    .then((res) => {
+        if(!res.ok) {
+            throw new Error("failed to fetch");
+        }
+
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching all applications", error);
+    })
 }
 
 export async function getAllJobs() {

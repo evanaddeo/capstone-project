@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
 
 @Entity
 @Table(name="manager")
@@ -14,7 +15,8 @@ public class Manager {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
-    private int user_id;
+    @Column(name="user_id")
+    private int userId;
     private String full_name;
     private String email;
     private String department;
@@ -30,11 +32,11 @@ public class Manager {
     }
 
     public int getUser_id() {
-        return this.user_id;
+        return this.userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
     public String getFull_name() {

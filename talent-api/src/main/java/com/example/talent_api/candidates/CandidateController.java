@@ -28,6 +28,13 @@ public class CandidateController {
         return foundCandidate.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<List<Candidate>> getCandidateByUserId(@PathVariable Long userId) {
+        List<Candidate> candidates = candidateRepository.findByUserId(userId);
+
+        return ResponseEntity.ok(candidates);
+    }
+
     @PostMapping
     public ResponseEntity<Candidate> createCandidate(@RequestBody Candidate candidate) {
         Candidate savedCandidate = candidateRepository.save(candidate);
