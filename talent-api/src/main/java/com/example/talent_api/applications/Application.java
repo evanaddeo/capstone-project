@@ -30,7 +30,8 @@ public class Application {
 
     @Column(name="job_id")
     private int jobId;
-    private int user_id;
+    @Column(name="user_id")
+    private int userId;
     private String cover_letter;
     private String custom_resume;
     private String application_status;
@@ -60,11 +61,11 @@ public class Application {
     }
 
     public int getUser_id() {
-        return this.user_id;
+        return this.userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
     public String getCover_letter() {
