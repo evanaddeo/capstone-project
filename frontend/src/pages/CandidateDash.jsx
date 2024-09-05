@@ -8,7 +8,7 @@ import '../styles/CandidateDash.css';
 
 import JobDetails from '../components/JobDetails';
 
-import { getAllJobs, postApplication } from '../crud';
+import { getAllJobs } from '../crud';
 
 const CandidateDash = () => {
 
@@ -28,24 +28,9 @@ const CandidateDash = () => {
     setSelectedJob(job);
   }
 
-  const handleApply = () => {
-    const application = 
-    {
-      "user_id": 5,
-      "date_applied": "2024-09-04T13:55:30.000+00:00",
-      "cover_letter": "example cover letter",
-      "custom_resume": "example resume",
-      "application_status": "Pending"
-    }
-
-    postApplication(application);
-  }
-
   useEffect(() => {
       getAllJobs()
       .then(jobs => setJobs(jobs))
-
-      document.cookie= "user_id=19; path=/;";
   }, []);
 
   const [isEditing, setIsEditing] = useState(false);
@@ -63,8 +48,10 @@ const CandidateDash = () => {
     <>
       <div className="hdr-wrapper">
         <h3 className="hdr">Candidate Home</h3>
-        <a style={{marginRight: "15px"}}href="/ApplicationList">My Applications</a>
-        <a href="/Profile">My Profile</a>
+        <button></button>
+        <a href="/ApplicationList">My Applications</a>
+        <a style={{textDecoration: "underline", marginLeft: "15px"}}>Jobs</a>
+        <a style={{marginLeft: "15px"}} href="/Profile">My Profile</a>
       </div>
     
       <div className="wrapper">
@@ -79,9 +66,10 @@ const CandidateDash = () => {
                 onClick={() => {
                   handleRowSelect(job, index);
                 }}
-                style={{border: (selectedRow === index) ? "1px solid gray" : "0px solid transparent"}}
+                style={{backgroundColor: (selectedRow === index) ? "rgba(35, 59, 194, 0.4)" : "rgba(255, 255, 255, 0.5)"}}
               >
-                <h4 className="job-company">{job.department}</h4>
+                <h4 style={{color: "rgba(0, 0, 255, .7)"}}className="job-company">{job.department}</h4>
+                
                 <h5 className="job-title">{job.listing_title}</h5>
               </div>
                 

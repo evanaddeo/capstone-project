@@ -1,17 +1,18 @@
 .card-wrapper {
-    background-color: rgba(72, 136, 157, 0.498);
+    background-color: rgba(51, 103, 121, 0.498);
     border: 0px solid transparent;
-    margin: 3px 0px 2px 0px;
+    margin: 3px 15px 2px 15px;
     height: 40px;
-    width: 100%;
+    width:95%;
     display: flex;
     flex-direction: flex-start;
     align-items: center;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .card-wrapper:hover {
-    background-color: rgba(109, 118, 119, 0.383);
+    opacity: 35%;
 }
 
 .job-company {

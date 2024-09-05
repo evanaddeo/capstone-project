@@ -1,19 +1,23 @@
 import React, { useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import { TextField, Button, Stack } from '@mui/material';
 
 import { getCookie } from "../utils/auth.js"
+import { postApplication } from "../crud.js"
 
 import "../styles/JobDetails.css"
 
 export default function JobDetails(props) {
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        address: '',
-        phone: '',
-        resume: null,
+        name: getCookie("full_name"),
+        email: getCookie("email"),
+        address: getCookie("address"),
+        phone: getCookie("phone"),
+        date_applied: "2024-03-24T12:34:55.000+00:00",
+        custom_resume: null,
         cover_letter: null
     });
 
@@ -24,7 +28,6 @@ export default function JobDetails(props) {
 
     const handleFileChange = (e) => {
         const { name, files } = e.target;
-        setFormData({ ...formData, [name]: files[0] })
     }
 
     const handleSubmit = (e) => {
@@ -36,10 +39,17 @@ export default function JobDetails(props) {
             'job_id': props.job.id,
             'cover_letter': formData.cover_letter,
             'custom_resume': formData.custom_resume,
-            'application_status': Pending
+            'application_status': "Pending"
         }
 
-        // POST
+        postApplication(formDataToSend)
+        .then((res) => {
+            console.log(res);
+        })
+        .then((data) => {
+            console.log(data);
+            window.location.reload();
+        })
     }
 
     return (
@@ -60,76 +70,88 @@ export default function JobDetails(props) {
                 </p>
             </div>
 
+            <h3>Apply Here:</h3>
+
             <form onSubmit={handleSubmit} style={{margin: "auto"}}>
                 <Stack spacing={3}>
-                    <TextField
-                        name="name"
-                        label="Full Name"
-                        variant="outlined"
-                        fullWidth
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                    <TextField
-                        name="email"
-                        label="Email"
-                        variant="outlined"
-                        fullWidth
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <TextField
-                        name="address"
-                        label="Address"
-                        variant="outlined"
-                        fullWidth
-                        value={formData.address}
-                        onChange={handleChange}
-                        required
-                    />
-                    <TextField
-                        name="phone"
-                        label="Phone Number"
-                        variant="outlined"
-                        fullWidth
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                    />
-                    <Button
-                        variant="contained"
-                        component="label"
-                    >
-                        Upload Resume
-                        <input
-                            type="file"
-                            name="resume"
-                            hidden
-                            onChange={handleFileChange}
-                            accept=".pdf,.doc,.docx"
+                    <div style={{display: "flex", flexDirection: "row"}}>
+                        <TextField
+                            name="name"
+                            label="Full Name"
+                            variant="outlined"
+                            
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
                         />
-                    </Button>
-                    <Button
-                        variant="contained"
-                        component="label"
-                    >
-                        Upload Cover Letter
-                        <input
-                            type="file"
-                            name="cover_letter"
-                            hidden
-                            onChange={handleFileChange}
-                            accept=".pdf,.doc,.docx"
+                        <TextField
+                            name="email"
+                            label="Email"
+                            variant="outlined"
+                            
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
                         />
-                    </Button>
-                    <Button
+                    </div>
+                    <div style={{display: "flex", flexDirection: "row"}}>
+                        <TextField
+                            name="address"
+                            label="Address"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.address}
+                            onChange={handleChange}
+                            required
+                        />
+                        <TextField
+                            name="phone"
+                            label="Phone Number"
+                            variant="outlined"
+                            fullWidth
+                            value={formData.phone}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    
+                    <div style={{display: "flex", flexDirection: "row"}}>
+                        <Button
+                            className="file-btn"
+                            component="label"
+                        >
+                            Upload Resume
+                            <input
+                                type="file"
+                                name="resume"
+                                hidden
+                                onChange={handleFileChange}
+                                accept=".pdf,.doc,.docx"
+                            />
+                        </Button>
+                        <Button
+                            component="label"
+                            className="file-btn"
+                            style={{marginLeft: "10px"}}
+                        >
+                            Upload Cover Letter
+                            <input
+                                type="file"
+                                name="cover_letter"
+                                hidden
+                                onChange={handleFileChange}
+                                accept=".pdf,.doc,.docx"
+                            />
+                        </Button>
+                    </div>
+                    
+                    <button
                         type="submit"
-                        variant="contained"
+                        className="submit-btn"
+                        style={{width: "100%", height: "40px", marginBottom: "45px"}}
                     >
                         Submit
-                    </Button>
+                    </button>
                 </Stack>
             </form>
         </div>

@@ -28,6 +28,13 @@ public class ManagerController {
         return foundManager.map(ResponseEntity::ok).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<List<Manager>> getManagerByUserId(@PathVariable Long userId) {
+       List<Manager> managers = managerRepository.findByUserId(userId);
+
+       return ResponseEntity.ok(managers);
+    }
+
     @PostMapping
     public ResponseEntity<Manager> createManager(@RequestBody Manager manager) {
         Manager savedManager = managerRepository.save(manager);
