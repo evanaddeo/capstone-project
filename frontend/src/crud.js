@@ -42,7 +42,31 @@ export async function getAllApplications() {
 }
 
 export async function getApplicationById(id) {
+    
+}
 
+export async function getApplicationByJobId(jobId) {
+    return fetch(`http://localhost:8080/applications/byJob/${jobId}`)
+    .then((res) => {
+        if(!res.ok) {
+            throw new Error("failed to fetch");
+        }
+
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching all applications", error);
+    })
+}
+
+export async function postApplication(application) {
+    return fetch('http://localhost:8080/applications', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(application)
+    })
 }
 
 export async function getCandidateById(id) {

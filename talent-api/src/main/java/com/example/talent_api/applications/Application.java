@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Column;
 import java.util.Date;
 import java.sql.Time;
 
@@ -15,13 +16,14 @@ import java.sql.Time;
 public class Application {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_applied;
 
-    private int job_id;
+    @Column(name="job_id")
+    private int jobId;
     private int user_id;
     private String cover_letter;
     private String custom_resume;
@@ -44,11 +46,11 @@ public class Application {
     }
 
     public int getJob_id() {
-        return this.job_id;
+        return this.jobId;
     }
 
-    public void setJob_id(int job_id) {
-        this.job_id = job_id;
+    public void setJob_id(int jobId) {
+        this.jobId = jobId;
     }
 
     public int getUser_id() {

@@ -17,7 +17,6 @@ export default function LoginForm(props) {
             console.log("Would be a successful login...");
         } else {
             setErrField(errorField);
-            console.log(errorField)
             console.log("Would be a popup with the message: " + errorMsg);
         }
     }
