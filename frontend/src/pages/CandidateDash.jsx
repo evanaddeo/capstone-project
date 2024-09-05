@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
 import UpdateUserForm from '../components/UpdateUserForm'; // Import the updated form component
 import { useDropzone } from 'react-dropzone';
+=======
+import UpdateUserForm from '../components/UpdateUserForm';
+import Header from '../components/Header'; 
+import Footer from '../components/Footer'; 
+>>>>>>> 531c8ec1e02c2411c3a791510ae73782c621ea03
 import '../styles/DashRight.css';
 import '../styles/DashLeft.css';
 import '../styles/CandidateDash.css';
@@ -16,9 +22,9 @@ const CandidateDash = () => {
   const [selectedJob, setSelectedJob] = useState(null);
 
   const [candidateInfo, setCandidateInfo] = useState({
-    name: 'n/a',
-    email: 'n/a',
-    phone: 'n/a',
+    name: 'N/A',
+    email: 'N/A',
+    phone: 'N/A',
   });
 
   const handleRowSelect = (job, index) => {
@@ -53,8 +59,15 @@ const CandidateDash = () => {
       document.cookie= "user_id=19; path=/;";
   }, []);
 
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
   const handleSave = (updatedInfo) => {
     setCandidateInfo(updatedInfo);
+    setIsEditing(false);
   };
 
   return (
@@ -96,6 +109,7 @@ const CandidateDash = () => {
           )}
         </div>
       </div>
+<<<<<<< HEAD
     </>
     
 
@@ -150,7 +164,47 @@ const CandidateDash = () => {
     //     </section>
     //   </div>
     // </div>
+=======
+    <>
+      <Header />
+      <div className="dashboard-wrapper">
+        <div className="dashboard-container-left">
+          <header className="dashboard-header-left">
+            <h1>Job Listings:</h1>
+          </header>
+          <section className="dashboard-links-left">
+            <li><a href="/create-job" className="link-button-left">Apply</a></li>
+            <li><a href="/update-job" className="link-button-left">Update</a></li>
+            <li><a href="/view-applications" className="link-button-left">View Applications</a></li>
+          </section>
+        </div>
+
+        <div className="dashboard-container-right">
+          <header className="dashboard-header-right">
+            <h1>Welcome, {candidateInfo.name}</h1>
+          </header>
+          <section className="dashboard-info-right">
+            <div className="info-card-right">
+              <h2>Candidate Info:</h2>
+              {!isEditing ? (
+                <>
+                  <p>Name: <span>{candidateInfo.name}</span></p>
+                  <p>Email: <span>{candidateInfo.email}</span></p>
+                  <p>Phone Number: <span>{candidateInfo.phone}</span></p>
+                  <button className="edit-button" onClick={handleEditClick}>Edit</button>
+                </>
+              ) : (
+                <UpdateUserForm initialInfo={candidateInfo} onSave={handleSave} />
+              )}
+            </div>
+          </section>
+        </div>
+      </div>
+      <Footer />
+    </>
+>>>>>>> 531c8ec1e02c2411c3a791510ae73782c621ea03
   );
 };
 
 export default CandidateDash;
+
