@@ -48,7 +48,6 @@ const CandidateDash = () => {
     <>
       <div className="hdr-wrapper">
         <h3 className="hdr">Candidate Home</h3>
-        <button></button>
         <a href="/ApplicationList">My Applications</a>
         <a style={{textDecoration: "underline", marginLeft: "15px"}}>Jobs</a>
         <a style={{marginLeft: "15px"}} href="/Profile">My Profile</a>

@@ -42,6 +42,7 @@ export default function LoginForm(props) {
                     document.cookie = `email=${candidateOrManager[0].email}; path=/;`;
                     document.cookie = `address=${candidateOrManager[0].address}; path=/;`;
                     document.cookie = `phone=${candidateOrManager[0].phone}; path=/;`;
+                    document.cookie = `id=${candidateOrManager[0].id}; path=/;`;
 
                     navigate("/CandidateDash")
                 } else {
@@ -50,6 +51,7 @@ export default function LoginForm(props) {
                     document.cookie = `email=${candidateOrManager[0].email}; path=/;`;
                     document.cookie = `department=${candidateOrManager[0].department}; path=/;`;
                     document.cookie = `phone=${candidateOrManager[0].phone}; path=/;`;
+                    document.cookie = `id=${candidateOrManager[0].id}; path=/;`;
 
                     navigate("/ManagerDash")
                 }

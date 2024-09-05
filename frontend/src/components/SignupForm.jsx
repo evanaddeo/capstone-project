@@ -29,7 +29,7 @@ export default function SignupForm(props) {
                 'type': "Candidate"
             };
     
-            // First, create the user
+ 
             fetch('http://localhost:8080/users', {
                 method: "POST",
                 headers: {
@@ -44,7 +44,7 @@ export default function SignupForm(props) {
                 return res.json();
             })
             .then(userResponse => {
-                // Use the user_id from the userResponse to create the candidate
+  
                 return fetch('http://localhost:8080/candidates', {
                     method: "POST",
                     headers: {
@@ -58,9 +58,10 @@ export default function SignupForm(props) {
                         'phone': phone,
                         'resume': null
                     })
-                }).then(() => {
-                    // Set cookies only after both requests are successful
-                    console.log(userResponse.id);
+                })
+                .then(res => console.log(res))
+                .then(candidateResponse => {
+        
                     document.cookie = `user_id=${userResponse.id}; path=/; SameSite=Lax;`;
                     document.cookie = `full_name=${name}; path=/;`;
                     document.cookie = `email=${email}; path=/;`;
