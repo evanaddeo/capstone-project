@@ -6,7 +6,17 @@ const ApplicationList = ({ jobId, managerId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  
+
   useEffect(() => {
+    // Import getCookie from ../utils/auth
+    //
+    // save getCookie("user_id") in a const
+    //
+    // make a fetch for http://localhost:8080/byUser/{userId}
+    //
+    // display the returned applications, displaymsg if there are none
+
     const fetchApplications = async () => {
       setLoading(true);
       try {

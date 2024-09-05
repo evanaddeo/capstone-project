@@ -35,6 +35,13 @@ public class ApplicationController {
         return ResponseEntity.ok(applications);
     }
 
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<List<Application>> getApplicationByUserId(@PathVariable Long userId) {
+        List<Application> applications = applicationRepository.findByUserId(userId);
+
+        return ResponseEntity.ok(applications);
+    }
+
     @PostMapping
     public ResponseEntity<Application> createApplication(@RequestBody Application application) {
         Application savedApplication = applicationRepository.save(application);

@@ -22,27 +22,6 @@ function Home() {
           <p> <Link to="/login-signup" className="nav-button">Go to Login/Signup</Link></p>
         </main>
       </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Username</th>
-            <th>Password</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users?.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.type}</td>
-              <td>{user.username}</td>
-              <td>{user.password}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       <Footer/>
     </>
   );

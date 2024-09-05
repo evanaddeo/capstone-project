@@ -21,3 +21,15 @@ export function verifySignupCredentials(username, password, confirmPassword) {
 
     return {errorField: null, errorMsg: null}
 }
+
+export function getCookie(name) {
+    const cookies = document.cookie.split(';, ');
+    for (let cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+
+    return null;
+}
