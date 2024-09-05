@@ -16,3 +16,8 @@
 .section {
     margin-bottom: -15px;
 }
+
+.file-btn {
+    width: 49%;
+    background-color: rgba(255, 255, 255, 0.578);
+}
