@@ -1,0 +1,19 @@
+/* Footer.css */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+    box-sizing: border-box; /* Include padding in the width calculation */
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  
