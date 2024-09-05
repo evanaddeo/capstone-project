@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Column;
 import java.util.Date;
 import java.sql.Time;
@@ -21,6 +22,11 @@ public class Application {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date date_applied;
+
+    @PrePersist
+    protected void onCreate() {
+        date_applied = new Date();
+    }
 
     @Column(name="job_id")
     private int jobId;

@@ -1,0 +1,19 @@
+.card-wrapper {
+    background-color: rgba(72, 136, 157, 0.498);
+    border: 0px solid transparent;
+    margin: 3px 0px 2px 0px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-wrapper:hover {
+    background-color: rgba(109, 118, 119, 0.383);
+}
+
+.job-company {
+    margin: 0px 15px 0px 20px;
+}
