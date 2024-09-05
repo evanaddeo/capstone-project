@@ -116,6 +116,19 @@ export async function getManagerByUserId(userId) {
     })
 }
 
+export async function getCandidatesByJobId(jobId) {
+    return fetch(`http://localhost:8080/candidates/byJob/${jobId}`)
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error("Failed to fetch candidates by job ID");
+            }
+            return res.json();
+        })
+        .catch((error) => {
+            console.log("Error fetching candidates by job ID", error);
+        });
+}
+
 export async function getAllJobs() {
     return fetch('http://localhost:8080/jobs')
     .then((res) => {
@@ -130,8 +143,18 @@ export async function getAllJobs() {
     })
 }
 
-export async function getJobById() {
+export async function getJobById(id) {
+    return fetch(`http://localhost:8080/jobs/${id}`)
+    .then( (res) => {
+        if (!res.ok) {
+            throw new Error("Failed to fetch user")
+        }
 
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching user", error);
+    })
 }
 
 export async function getAllManagers() {
