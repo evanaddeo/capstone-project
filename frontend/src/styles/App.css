@@ -86,10 +86,12 @@ h1 {
   flex-direction: row;
   justify-content: flex-start;
   width: 70vw;
+  align-items: center;
 }
 
 .hdr {
   margin-left: 35px;
+  margin-right: 50px;
 }
 
 .right-body {

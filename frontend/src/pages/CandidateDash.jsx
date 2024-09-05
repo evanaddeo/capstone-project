@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-import UpdateUserForm from '../components/UpdateUserForm'; // Import the updated form component
-import { useDropzone } from 'react-dropzone';
-=======
 import UpdateUserForm from '../components/UpdateUserForm';
 import Header from '../components/Header'; 
 import Footer from '../components/Footer'; 
->>>>>>> 531c8ec1e02c2411c3a791510ae73782c621ea03
 import '../styles/DashRight.css';
 import '../styles/DashLeft.css';
 import '../styles/CandidateDash.css';
@@ -20,12 +15,6 @@ const CandidateDash = () => {
   const [jobs, setJobs] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
-
-  const [candidateInfo, setCandidateInfo] = useState({
-    name: 'N/A',
-    email: 'N/A',
-    phone: 'N/A',
-  });
 
   const handleRowSelect = (job, index) => {
     if (selectedRow === index) {
@@ -74,6 +63,8 @@ const CandidateDash = () => {
     <>
       <div className="hdr-wrapper">
         <h3 className="hdr">Candidate Home</h3>
+        <a style={{marginRight: "15px"}}href="/ApplicationList">My Applications</a>
+        <a href="/Profile">My Profile</a>
       </div>
     
       <div className="wrapper">
@@ -109,102 +100,8 @@ const CandidateDash = () => {
           )}
         </div>
       </div>
-<<<<<<< HEAD
     </>
-    
-
-    // <div className="dashboard-wrapper">
-    //   <div className="dashboard-container-left">
-    //     <header className="dashboard-header-left">
-    //       <h1>Job Listings:</h1>
-    //     </header>
-
-    //     <table>
-    //       <thead>
-    //         <tr>
-    //           <th>Company</th>
-    //           <th>Title</th>
-    //           <th>Description</th>
-    //           <th>Status</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {jobs?.map((job, index) => (
-    //           <tr 
-    //             key={job.id} 
-    //             onClick={() => {
-    //               setSelectedRow(index);
-    //               handleRowSelect(index, job);
-    //             }}
-    //           >
-    //             <td style={{backgroundColor: selectedRow === index ? 'rgba(55, 70, 23, .25)' : 'inherit'}}>{job.department}</td>
-    //             <td style={{backgroundColor: selectedRow === index ? 'rgba(55, 70, 23, .25)' : 'inherit'}}>{job.listing_title}</td>
-    //             <td style={{backgroundColor: selectedRow === index ? 'rgba(55, 70, 23, .25)' : 'inherit'}}>{job.job_description}</td>
-    //             <td style={{backgroundColor: selectedRow === index ? 'rgba(55, 70, 23, .25)' : 'inherit'}}>{job.listing_status}</td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //     <section className="dashboard-links-left">
-    //       <li><a onClick={() => {handleApply()}} className="link-button-left">Apply </a></li>
-    //       <li><a href="/update-job" className="link-button-left">Update</a></li>
-    //       <li><a href="/view-applications" className="link-button-left">View Applications</a></li>
-    //     </section>
-    //   </div>
-
-    //   <div className="dashboard-container-right">
-    //     <header className="dashboard-header-right">
-    //       <h1>Welcome *Get Candidate Name*</h1>
-    //     </header>
-    //     <section className="dashboard-info-right">
-    //       <div className="info-card-right">
-    //         <h2>Candidate Info:</h2>
-    //         <UpdateUserForm initialInfo={candidateInfo} onSave={handleSave} />
-    //       </div>
-    //     </section>
-    //   </div>
-    // </div>
-=======
-    <>
-      <Header />
-      <div className="dashboard-wrapper">
-        <div className="dashboard-container-left">
-          <header className="dashboard-header-left">
-            <h1>Job Listings:</h1>
-          </header>
-          <section className="dashboard-links-left">
-            <li><a href="/create-job" className="link-button-left">Apply</a></li>
-            <li><a href="/update-job" className="link-button-left">Update</a></li>
-            <li><a href="/view-applications" className="link-button-left">View Applications</a></li>
-          </section>
-        </div>
-
-        <div className="dashboard-container-right">
-          <header className="dashboard-header-right">
-            <h1>Welcome, {candidateInfo.name}</h1>
-          </header>
-          <section className="dashboard-info-right">
-            <div className="info-card-right">
-              <h2>Candidate Info:</h2>
-              {!isEditing ? (
-                <>
-                  <p>Name: <span>{candidateInfo.name}</span></p>
-                  <p>Email: <span>{candidateInfo.email}</span></p>
-                  <p>Phone Number: <span>{candidateInfo.phone}</span></p>
-                  <button className="edit-button" onClick={handleEditClick}>Edit</button>
-                </>
-              ) : (
-                <UpdateUserForm initialInfo={candidateInfo} onSave={handleSave} />
-              )}
-            </div>
-          </section>
-        </div>
-      </div>
-      <Footer />
-    </>
->>>>>>> 531c8ec1e02c2411c3a791510ae73782c621ea03
   );
 };
 
 export default CandidateDash;
-
