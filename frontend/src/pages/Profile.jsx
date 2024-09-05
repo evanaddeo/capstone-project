@@ -1,125 +1,120 @@
 import React, { useState, useEffect } from 'react';
-import { getUserById, updateUser } from '../crud.js'; // Assuming updateUser is defined in crud.js
-import { getCookie } from '../utils/auth';
-//import '../styles/Profile.css';
+import { getCookie } from '../utils/auth'; // Utility to get the cookie
+import { getCandidateByUserId, updateCandidate } from '../crud'; // Fetch function
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
+  const [candidate, setCandidate] = useState({
     full_name: '',
     email: '',
-    phone: '',
     address: '',
+    phone: '',
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [candidateId, setCandidateId] = useState(null);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userId = getCookie('user_id');
-        if (userId) {
-          const fetchedUser = await getUserById(userId);
-          setUser(fetchedUser);
-          setFormData({
-            full_name: fetchedUser.full_name || '',
-            email: fetchedUser.email || '',
-            phone: fetchedUser.phone || '',
-            address: fetchedUser.address || '',
-          });
-        }
-      } catch (error) {
-        console.error('Failed to fetch user:', error);
-      }
-    };
-
-    fetchUser();
-  }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSave = async () => {
+  const fetchCandidateProfile = async () => {
+    setLoading(true);
     try {
-      const userId = getCookie('user_id');
-      const updatedUser = { ...user, ...formData };
-      await updateUser(userId, updatedUser); // Assuming updateUser takes userId and new data
-      setUser(updatedUser);
-      setEditing(false);
-    } catch (error) {
-      console.error('Failed to update user:', error);
+      const user_id = getCookie('user_id'); // Fetch user ID from cookie
+
+      if (!user_id) {
+        throw new Error('User ID not found in cookie.');
+      }
+
+      const fetchedCandidate = await getCandidateByUserId(user_id);
+      if (fetchedCandidate && fetchedCandidate[0]) {
+        setCandidate(fetchedCandidate[0]);
+        setCandidateId(fetchedCandidate[0].id);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    fetchCandidateProfile();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCandidate((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    const candidateForm = 
+    {
+        "address": candidate.address,
+        "phone": candidate.phone,
+        "email": candidate.email,
+        "full_name": candidate.full_name,
+        "resume": null
+    }
+    // Submit the updated candidate data here, such as calling an update API.
+    console.log('Before updating Candidate:', candidate);
+    console.log("cid: ", candidateId);
+    updateCandidate(candidateForm, candidateId);
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p className="error">{error}</p>;
+
   return (
     <div className="profile-container">
-      <h1>Profile</h1>
-      {user ? (
-        <div className="profile-details">
-          <div className="profile-field">
+      <h1>Candidate Profile</h1>
+      {candidate ? (
+        <form onSubmit={handleFormSubmit}>
+          <div className="form-group">
             <label>Full Name:</label>
-            {editing ? (
-              <input
-                type="text"
-                name="full_name"
-                value={formData.full_name}
-                onChange={handleChange}
-              />
-            ) : (
-              <span>{user.full_name}</span>
-            )}
+            <input
+              type="text"
+              name="full_name"
+              value={candidate.full_name}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-          <div className="profile-field">
+          <div className="form-group">
             <label>Email:</label>
-            {editing ? (
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            ) : (
-              <span>{user.email}</span>
-            )}
+            <input
+              type="email"
+              name="email"
+              value={candidate.email}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-          <div className="profile-field">
-            <label>Phone:</label>
-            {editing ? (
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-              />
-            ) : (
-              <span>{user.phone}</span>
-            )}
-          </div>
-          <div className="profile-field">
+          <div className="form-group">
             <label>Address:</label>
-            {editing ? (
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-            ) : (
-              <span>{user.address}</span>
-            )}
+            <input
+              type="text"
+              name="address"
+              value={candidate.address}
+              onChange={handleInputChange}
+              required
+            />
           </div>
-          {editing ? (
-            <button onClick={handleSave}>Save</button>
-          ) : (
-            <button onClick={() => setEditing(true)}>Edit</button>
-          )}
-        </div>
+          <div className="form-group">
+            <label>Phone:</label>
+            <input
+              type="tel"
+              name="phone"
+              value={candidate.phone}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <button type="submit">Update Profile</button>
+        </form>
       ) : (
-        <p>Loading...</p>
+        <p>No candidate profile found.</p>
       )}
     </div>
   );

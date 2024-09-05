@@ -44,7 +44,7 @@ export default function SignupForm(props) {
                 return res.json();
             })
             .then(userResponse => {
-                // Use the user_id from the userResponse to create the candidate
+                
                 return fetch('http://localhost:8080/candidates', {
                     method: "POST",
                     headers: {
@@ -58,8 +58,10 @@ export default function SignupForm(props) {
                         'phone': phone,
                         'resume': null
                     })
-                }).then(() => {
-                    // Set cookies only after both requests are successful
+                })
+                .then(res => console.log(res))
+                .then((candidateResponse) => {
+                    
                     console.log(userResponse.id);
                     document.cookie = `user_id=${userResponse.id}; path=/; SameSite=Lax;`;
                     document.cookie = `full_name=${name}; path=/;`;
