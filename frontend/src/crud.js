@@ -116,6 +116,30 @@ export async function getCandidateByUserId(userId) {
     })
 }
 
+export async function updateCandidate(candidate, id) {
+    return fetch(`http://localhost:8080/candidates/${id}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(candidate)
+    })
+}
+
+export async function getCandidateById(id) {
+    return fetch(`http://localhost:8080/candidates/${id}`)
+    .then((res) => {
+        if(!res.ok) {
+            throw new Error("failed to fetch");
+        }
+
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching all applications", error);
+    })
+}
+
 export async function getManagerByUserId(userId) {
     return fetch(`http://localhost:8080/managers/byUser/${userId}`)
     .then((res) => {
