@@ -78,6 +78,20 @@ export async function getApplicationByJobId(jobId) {
     })
 }
 
+export async function getApplicationsByUserId(userId) {
+    return fetch(`http://localhost:8080/applications/byUser/${userId}`)
+    .then((res) => {
+        if(!res.ok) {
+            throw new Error("failed to fetch");
+        }
+
+        return res.json();
+    })
+    .catch((error) => {
+        console.log("Error fetching all applications", error);
+    })
+}
+
 export async function postApplication(application) {
     return fetch('http://localhost:8080/applications', {
         method: "POST",
