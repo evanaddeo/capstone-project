@@ -89,6 +89,9 @@ h1 {
   justify-content: flex-start;
   width: 70vw;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .hdr {

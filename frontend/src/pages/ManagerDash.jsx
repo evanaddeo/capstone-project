@@ -6,9 +6,10 @@ import '../styles/DashRight.css';
 import '../styles/DashLeft.css';
 import '../styles/CandidateDash.css';
 
-import JobDetails from '../components/JobDetails';
+import ApplicantForm from '../components/ApplicantForm';
 
-import { getAllJobs, postApplication } from '../crud';
+import { getJobsByManagerId, postApplication } from '../crud';
+import { getCookie } from '../utils/auth'
 
 const ManagerDash = () => {
 
@@ -42,28 +43,19 @@ const ManagerDash = () => {
   }
 
   useEffect(() => {
-      getAllJobs()
-      .then(jobs => setJobs(jobs))
+      const managerId = getCookie('user_id');
 
-      document.cookie= "user_id=19; path=/;";
+      getJobsByManagerId(managerId)
+      .then(filteredJobs => setJobs(filteredJobs))
   }, []);
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = (updatedInfo) => {
-    setCandidateInfo(updatedInfo);
-    setIsEditing(false);
-  };
 
   return (
     <>
       <div className="hdr-wrapper">
         <h3 className="hdr">Manager Home</h3>
-        <a href="/Profile">My Profile</a>
+        <a href="/ApplicationList">My Applications</a>
+        <a style={{textDecoration: "underline", marginLeft: "15px"}}>My Listings</a>
       </div>
     
       <div className="wrapper">
@@ -71,31 +63,38 @@ const ManagerDash = () => {
           
           {jobs.length > 0 ? (
             jobs.map((job, index) => (
-              <div 
-                className= "card-wrapper"
+              <div
+                className="card-wrapper"
                 key={job.id}
                 job={job}
                 onClick={() => {
                   handleRowSelect(job, index);
                 }}
-                style={{border: (selectedRow === index) ? "1px solid gray" : "0px solid transparent"}}
+                style={{
+                  backgroundColor: selectedRow === index ? "rgba(35, 59, 194, 0.4)" : "rgba(255, 255, 255, 0.5)"
+                }}
               >
-                <h4 className="job-company">{job.department}</h4>
-                <h5 className="job-title">{job.listing_title}</h5>
+                <div className="job-details">
+                  <h4 style={{ color: "rgba(0, 0, 255, .7)" }} className="job-company">{job.department}</h4>
+                  <h5 className="job-title">{job.listing_title}</h5>
+                </div>
+                <div className="job-status">
+                  <h6 style={{color: (job.listing_status === "Open") ? "green" : "red"}}>{job.listing_status}</h6>
+                </div>
               </div>
                 
             ))
           ) : (
-            <p>Empty</p>
+            <p>No job listings available to display.</p>
           )}
         </div>
         <div className="right-container">
           {selectedJob ? (
             <div className="right-body">
-              <JobDetails job={selectedJob} />
+              <ApplicantForm job={selectedJob} />
             </div>
           ) : (
-            <p>Empty</p>
+            <p>Select a job listing ti display information.</p>
           )}
         </div>
       </div>

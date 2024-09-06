@@ -33,17 +33,6 @@ const CandidateDash = () => {
       .then(jobs => setJobs(jobs))
   }, []);
 
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = (updatedInfo) => {
-    setCandidateInfo(updatedInfo);
-    setIsEditing(false);
-  };
-
   return (
     <>
       <div className="hdr-wrapper">
@@ -74,7 +63,7 @@ const CandidateDash = () => {
                 
             ))
           ) : (
-            <p>Empty</p>
+            <p>No jobs available to display.</p>
           )}
         </div>
         <div className="right-container">
@@ -83,7 +72,7 @@ const CandidateDash = () => {
               <JobDetails job={selectedJob} />
             </div>
           ) : (
-            <p>Empty</p>
+            <p>Select a job to view details.</p>
           )}
         </div>
       </div>

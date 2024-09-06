@@ -61,7 +61,7 @@ const ApplicationList = ({ jobId, managerId }) => {
       </div>
       <div className="application-list">
         <h2>Applications</h2>
-        <table>
+        <table className="scroll-list">
           <thead>
             <tr>
               <th>Company (Department)</th>
@@ -71,9 +71,6 @@ const ApplicationList = ({ jobId, managerId }) => {
               <th>Status</th>
             </tr>
           </thead>
-          <tbody></tbody>
-        </table>
-          <table className="scroll-list"><thead></thead>
           <tbody>
             {applications.length > 0 ? (
               applications.map((application) => (
@@ -90,7 +87,9 @@ const ApplicationList = ({ jobId, managerId }) => {
                       View Cover Letter
                     </a>
                   </td>
-                  <td style={{color: (application.application_status === 'Rejected' ? "red" : "green")}}>{application.application_status}</td>
+                  <td style={{color: (application.application_status === 'Denied' ? "red" : 
+                    (application.application_status === 'Accepted') ? "green" : "gray"
+                  )}}>{application.application_status}</td>
                 </tr>
               ))
             ) : (
