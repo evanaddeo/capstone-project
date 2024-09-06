@@ -67,55 +67,69 @@ const Profile = () => {
   if (error) return <p className="error">{error}</p>;
 
   return (
-    <div className="profile-container">
-      <h1>Candidate Profile</h1>
-      {candidate ? (
-        <form onSubmit={handleFormSubmit}>
-          <div className="form-group">
-            <label>Full Name:</label>
-            <input
-              type="text"
-              name="full_name"
-              value={candidate.full_name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={candidate.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Address:</label>
-            <input
-              type="text"
-              name="address"
-              value={candidate.address}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Phone:</label>
-            <input
-              type="tel"
-              name="phone"
-              value={candidate.phone}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <button type="submit">Update Profile</button>
-        </form>
-      ) : (
-        <p>No candidate profile found.</p>
-      )}
-    </div>
+    <>
+        <div className="hdr-wrapper">
+            <h3 className="hdr">Candidate Home</h3>
+            <a href="/ApplicationList">My Applications</a>
+            <a style={{marginLeft: "15px"}} href="/CandidateDash">Jobs</a>
+            <a style={{textDecoration: "underline", marginLeft: "15px"}} href="/Profile">My Profile</a>
+        </div>
+        <div className="profile-container">
+        <h1>Candidate Profile</h1>
+        {candidate ? (
+            <form className="profile-form" onSubmit={handleFormSubmit}>
+            <div className="form-group">
+                <label>Full Name:</label>
+                <input
+                className="form-input"
+                type="text"
+                name="full_name"
+                value={candidate.full_name}
+                onChange={handleInputChange}
+                required
+                />
+            </div>
+            <div className="form-group">
+                <label>Email:</label>
+                <input
+                className="form-input"
+                type="email"
+                name="email"
+                value={candidate.email}
+                onChange={handleInputChange}
+                required
+                />
+            </div>
+            <div className="form-group">
+                <label>Address:</label>
+                <input
+                className="form-input"
+                type="text"
+                name="address"
+                value={candidate.address}
+                onChange={handleInputChange}
+                required
+                />
+            </div>
+            <div className="form-group">
+                <label>Phone:</label>
+                <input
+                className="form-input"
+                type="tel"
+                name="phone"
+                value={candidate.phone}
+                onChange={handleInputChange}
+                required
+                />
+            </div>
+            <button type="submit">Update Profile</button>
+            </form>
+        ) : (
+            <p>No candidate profile found.</p>
+        )}
+        </div>
+    </>
   );
 };
+
+export default Profile;

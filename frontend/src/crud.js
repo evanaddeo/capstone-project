@@ -195,6 +195,18 @@ export async function getJobById(id) {
     })
 }
 
+export async function getJobsByManagerId(managerId) {
+    try {
+      const allJobs = await getAllJobs();
+      const filteredJobs = allJobs.filter(job => job.manager_id == managerId);
+        
+      return filteredJobs;
+    } catch (err) {
+      console.error('Error fetching jobs:', err);
+      return [];
+    }
+  };
+
 export async function getAllManagers() {
     return fetch('http://localhost:8080/managers')
     .then((res) => {

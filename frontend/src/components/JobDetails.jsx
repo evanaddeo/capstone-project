@@ -65,7 +65,7 @@ export default function JobDetails(props) {
 
             <div className="job-status">
                 <h4 style={{marginRight: "10px"}}>Status:</h4>
-                <p style={{color: (props.job.listing_status === "Open") ? "green" : "inherit"}}>
+                <p style={{color: (props.job.listing_status === "Open") ? "green" : "red"}}>
                     {props.job.listing_status}
                 </p>
             </div>

@@ -1,0 +1,114 @@
+.applicant-form {
+    padding: 20px;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-height: 480px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    width: 190px;
+  }
+  
+  .card.selected {
+    background-color: rgba(35, 59, 194, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .candidate-name {
+    font-size: 1.2em;
+    margin: 0;
+  }
+  
+  .candidate-email, .candidate-phone {
+    margin: 5px 0;
+  }
+  
+  .application-status {
+    margin: 10px 0;
+    font-style: italic;
+  }
+  
+  .links {
+    margin: 10px 0;
+  }
+  
+  .link {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: background-color 0.3s;
+  }
+  
+  .btn.active {
+    cursor: pointer;
+    opacity: 1;
+  }
+  
+  .btn.accept {
+    background-color: #28a7465e; 
+  }
+  
+  .btn.accept.active {
+    background-color: #218838;
+  }
+
+  .btn.accept.active:hover {
+    color: #218838;
+    background-color: transparent;
+  }
+  
+  .btn.deny {
+    background-color: #dc35466b; 
+  }
+  
+  .btn.deny.active {
+    background-color: #c82333; 
+  }
+
+  .btn.deny.active:hover {
+    color: #c82333;
+    background-color: transparent;
+  }
+
+  .bottom-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+  }
+  

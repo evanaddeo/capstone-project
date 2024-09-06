@@ -12,7 +12,7 @@
     background-color: #f4f4f4;
   }
 
-  .application-list {
+  .scroll-list {
     max-height: 75vh;
     overflow-y: auto;
   }
