@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 @RestController
+// Moved this to the parent CorsConfiguration
+// @CrossOrigin(origins="http://34.209.31.30:5173")
 @RequestMapping("/applications")
 public class ApplicationController {
     

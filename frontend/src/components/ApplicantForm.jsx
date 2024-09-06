@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { getApplicationByJobId, getCandidateByUserId } from "../crud"
 
 import "../styles/ApplicantForm.css"
+import config from '../config.js';
+const apiServer = config.apiServer;
+
+//const apiServer="http://34.209.31.30:8080"; 
 
 const ApplicantForm = ({ job }) => {
   const [applications, setApplications] = useState([]);
@@ -48,7 +52,7 @@ const ApplicantForm = ({ job }) => {
         "application_status": "Accepted"
       };
     
-      fetch(`http://localhost:8080/applications/${application.id}`, {
+      fetch(apiServer+`/applications/${application.id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -70,7 +74,7 @@ const ApplicantForm = ({ job }) => {
             "additional_information": job.additional_information,
             "listing_status": "Closed"
         }
-        fetch(`http://localhost:8080/jobs/${job.id}`, {
+        fetch(apiServer+`/jobs/${job.id}`, {
             method: "PUT",
             headers: {
               'Content-Type': 'application/json'
@@ -95,7 +99,7 @@ const ApplicantForm = ({ job }) => {
         "application_status": "Denied"
       };
     
-      fetch(`http://localhost:8080/applications/${application.id}`, {
+      fetch(apiServer+`/applications/${application.id}`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -117,7 +121,7 @@ const ApplicantForm = ({ job }) => {
             "additional_information": job.additional_information,
             "listing_status": "Closed"
         }
-        fetch(`http://localhost:8080/jobs/${job.id}`, {
+        fetch(apiServer+`/jobs/${job.id}`, {
             method: "PUT",
             headers: {
               'Content-Type': 'application/json'

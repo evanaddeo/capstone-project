@@ -3,6 +3,11 @@ import '../styles/ApplicationList.css';
 import { getCookie } from '../utils/auth';
 import { getJobById } from '../crud.js'; 
 
+import config from '../config.js';
+const apiServer = config.apiServer;
+
+//const apiServer="http://34.209.31.30:8080"; 
+
 const ApplicationList = ({ jobId, managerId }) => {
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,7 +22,7 @@ const ApplicationList = ({ jobId, managerId }) => {
         throw new Error('User ID not found in cookie.');
       }
 
-      const response = await fetch(`http://localhost:8080/applications/byUser/${userId}`);
+      const response = await fetch(apiServer+`/applications/byUser/${userId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch applications.');
       }

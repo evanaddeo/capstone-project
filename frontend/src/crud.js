@@ -1,6 +1,28 @@
+// apiServer="http://34.209.31.30:8080/" should be defined elsewhere, but I put it in main.jsx for now
+//const apiServer="http://34.209.31.30:8080"; 
+import config from './config.js';
+const apiServer = config.apiServer;
+
 export async function getAllUsers() {
 
-    return fetch('http://localhost:8080/users')
+    return await fetch(apiServer+'/users')
+	.then(response => {
+		return response.text();
+	})
+	.then((data) => {
+		return new Promise((resolve, reject) => {
+		resolve(data ? JSON.parse(data)	: []);
+		reject(error);
+		});
+	})
+	.catch((error) => {
+		console.log("Error fetching all users", error);
+	});
+	//const users = await response.json();
+	//console.log(users);
+	//return users;
+	/*
+    return fetch(apiServer+'/users')
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -11,16 +33,23 @@ export async function getAllUsers() {
     .catch((error) => {
         console.log("Error fetching all users", error);
     })
+    */
 }
 
 export async function getLoggedInUser(username, password) {
     try {
-        const response = await fetch('http://localhost:8080/users');
+	/*
+        const response = await fetch(apiServer+'/users');
         if (!response.ok) {
             throw new Error('Failed to fetch users');
         }
 
-        const users = await response.json();
+	const users = await getAllUsers();
+	*/
+	let users =null ;
+	    await getAllUsers().then(u => {
+		    users = u;
+	    });
 
         const user = users.find(u => u.username === username && u.password === password);
         if (user === undefined) return null;
@@ -33,7 +62,7 @@ export async function getLoggedInUser(username, password) {
 }
 
 export async function getUserById(id) {
-    return fetch(`http://localhost:8080/users/${id}`)
+    return fetch(`http://34.209.31.30:8080/users/${id}`)
     .then( (res) => {
         if (!res.ok) {
             throw new Error("Failed to fetch user")
@@ -47,7 +76,7 @@ export async function getUserById(id) {
 }
 
 export async function getAllApplications() {
-    return fetch('http://localhost:8080/applications')
+    return fetch(apiServer+'/applications')
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -65,7 +94,7 @@ export async function getApplicationById(id) {
 }
 
 export async function getApplicationByJobId(jobId) {
-    return fetch(`http://localhost:8080/applications/byJob/${jobId}`)
+    return fetch(`http://34.209.31.30:8080/applications/byJob/${jobId}`)
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -79,7 +108,7 @@ export async function getApplicationByJobId(jobId) {
 }
 
 export async function getApplicationsByUserId(userId) {
-    return fetch(`http://localhost:8080/applications/byUser/${userId}`)
+    return fetch(`http://34.209.31.30:8080/applications/byUser/${userId}`)
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -93,7 +122,7 @@ export async function getApplicationsByUserId(userId) {
 }
 
 export async function postApplication(application) {
-    return fetch('http://localhost:8080/applications', {
+    return fetch(apiServer+'/applications', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -103,7 +132,7 @@ export async function postApplication(application) {
 }
 
 export async function getCandidateByUserId(userId) {
-    return fetch(`http://localhost:8080/candidates/byUser/${userId}`)
+    return fetch(`http://34.209.31.30:8080/candidates/byUser/${userId}`)
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -117,7 +146,7 @@ export async function getCandidateByUserId(userId) {
 }
 
 export async function updateCandidate(candidate, id) {
-    return fetch(`http://localhost:8080/candidates/${id}`, {
+    return fetch(`http://34.209.31.30:8080/candidates/${id}`, {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -127,7 +156,7 @@ export async function updateCandidate(candidate, id) {
 }
 
 export async function getCandidateById(id) {
-    return fetch(`http://localhost:8080/candidates/${id}`)
+    return fetch(`http://34.209.31.30:8080/candidates/${id}`)
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -141,7 +170,7 @@ export async function getCandidateById(id) {
 }
 
 export async function getManagerByUserId(userId) {
-    return fetch(`http://localhost:8080/managers/byUser/${userId}`)
+    return fetch(`http://34.209.31.30:8080/managers/byUser/${userId}`)
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -155,7 +184,7 @@ export async function getManagerByUserId(userId) {
 }
 
 export async function getCandidatesByJobId(jobId) {
-    return fetch(`http://localhost:8080/candidates/byJob/${jobId}`)
+    return fetch(`http://34.209.31.30:8080/candidates/byJob/${jobId}`)
         .then((res) => {
             if (!res.ok) {
                 throw new Error("Failed to fetch candidates by job ID");
@@ -168,7 +197,7 @@ export async function getCandidatesByJobId(jobId) {
 }
 
 export async function getAllJobs() {
-    return fetch('http://localhost:8080/jobs')
+    return fetch(apiServer+'/jobs')
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -182,7 +211,7 @@ export async function getAllJobs() {
 }
 
 export async function getJobById(id) {
-    return fetch(`http://localhost:8080/jobs/${id}`)
+    return fetch(`http://34.209.31.30:8080/jobs/${id}`)
     .then( (res) => {
         if (!res.ok) {
             throw new Error("Failed to fetch user")
@@ -208,7 +237,7 @@ export async function getJobsByManagerId(managerId) {
   };
 
 export async function getAllManagers() {
-    return fetch('http://localhost:8080/managers')
+    return fetch(apiServer+'/managers')
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -222,7 +251,7 @@ export async function getAllManagers() {
 }
 
 export async function getAllCandidates() {
-    return fetch('http://localhost:8080/candidates')
+    return fetch(apiServer+'/candidates')
     .then((res) => {
         if(!res.ok) {
             throw new Error("failed to fetch");
@@ -234,3 +263,4 @@ export async function getAllCandidates() {
         console.log("Error fetching all candidates", error);
     })
 }
+

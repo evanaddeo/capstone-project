@@ -12,6 +12,7 @@ import './styles/App.css';
 import CandidateList from './components/CandidateList';
 import ApplicationList from './components/ApplicationList';
 import Profile from './pages/Profile';
+import config from './config';
 
 function App() {
 
