@@ -11,4 +11,9 @@
   .application-list th {
     background-color: #f4f4f4;
   }
+
+  .application-list {
+    max-height: 75vh;
+    overflow-y: auto;
+  }
   
