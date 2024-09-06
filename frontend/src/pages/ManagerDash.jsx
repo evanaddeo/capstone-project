@@ -17,6 +17,8 @@ const ManagerDash = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
 
+  const [parentRefreshKey, setParentRefreshKey] = useState(0);
+
   const handleRowSelect = (job, index) => {
     if (selectedRow === index) {
       setSelectedRow(null);
@@ -91,10 +93,10 @@ const ManagerDash = () => {
         <div className="right-container">
           {selectedJob ? (
             <div className="right-body">
-              <ApplicantForm job={selectedJob} />
+              <ApplicantForm job={selectedJob} setParentRefreshKey={setParentRefreshKey}/>
             </div>
           ) : (
-            <p>Select a job listing ti display information.</p>
+            <p>Select a job listing to display information.</p>
           )}
         </div>
       </div>

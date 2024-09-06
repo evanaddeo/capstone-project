@@ -77,6 +77,11 @@ const ApplicantForm = ({ job }) => {
             },
             body: JSON.stringify(jobPut)
           })
+          .then(() => {
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); 
+          })
       })
       .catch(error => {
         console.error('Error updating application:', error);
@@ -118,6 +123,11 @@ const ApplicantForm = ({ job }) => {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(jobPut)
+          })
+          .then(() => {
+            setTimeout(() => {
+                window.location.reload();
+              }, 2000); 
           })
       })
       .catch(error => {

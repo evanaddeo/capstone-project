@@ -11,6 +11,7 @@ export default function LoginForm(props) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errField, setErrField] = useState("")
+    const [userType, setUserType] = useState("")
 
     const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ export default function LoginForm(props) {
             if (user) {
                 if (user.type === "Candidate") {
                     console.log("candidate")
+                    setUserType(user.type)
                     return getCandidateByUserId(user.id);
                 } else {
 
@@ -35,7 +37,7 @@ export default function LoginForm(props) {
         })
         .then(candidateOrManager => {
             if (candidateOrManager) {
-                if (candidateOrManager[0].user_id) {
+                if (userType === "Candidate") {
                     
                     document.cookie = `user_id=${candidateOrManager[0].user_id}; path=/;`;
                     document.cookie = `full_name=${candidateOrManager[0].full_name}; path=/;`;
