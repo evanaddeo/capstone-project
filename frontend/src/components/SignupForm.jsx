@@ -44,7 +44,7 @@ export default function SignupForm(props) {
                 return res.json();
             })
             .then(userResponse => {
-  
+
                 return fetch('http://localhost:8080/candidates', {
                     method: "POST",
                     headers: {
