@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 @RestController
+// Moved this to the parent CorsConfiguration
+// @CrossOrigin(origins="http://34.209.31.30:5173")
 @RequestMapping("/users")
 public class UserController {
 
@@ -21,6 +23,7 @@ public class UserController {
     private UserDataService userService;
 
     @GetMapping
+    @CrossOrigin(origins="http://34.209.31.30:5173")
     public List<User> getUsers() {
         return userRepository.findAll();
     }

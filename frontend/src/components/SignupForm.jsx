@@ -7,6 +7,10 @@ import { verifySignupCredentials, getCookie, clearAllCookies } from '../utils/au
 import {getLoggedInUser} from '../crud';
 import '../styles/LoginSignup.css';
 
+import config from '../config.js';
+const apiServer = config.apiServer;
+//const apiServer="http://34.209.31.30:8080"; 
+
 export default function SignupForm(props) {
     const navigate = useNavigate();
 
@@ -30,7 +34,7 @@ export default function SignupForm(props) {
             };
     
  
-            fetch('http://localhost:8080/users', {
+            fetch(apiServer+'/users', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -45,7 +49,7 @@ export default function SignupForm(props) {
             })
             .then(userResponse => {
 
-                return fetch('http://localhost:8080/candidates', {
+                return fetch(apiServer+'/candidates', {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
